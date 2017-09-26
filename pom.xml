@@ -13,7 +13,7 @@
         <encoding>UTF-8</encoding>
         <hbase.major.version>1.3.1</hbase.major.version>
         <spring-version>4.3.11.RELEASE</spring-version>
-        <guava.version>23.0</guava.version>
+        <guava.version>18.0</guava.version>
         <junit.version>4.12</junit.version>
         <mockito.verion>1.10.19</mockito.verion>
     </properties>
