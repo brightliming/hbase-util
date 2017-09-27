@@ -4,15 +4,21 @@ package com.ehualu.hbase;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.springframework.beans.factory.FactoryBean;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Map;
 
 /**
  * Created by Administrator on 2017/9/26.
  */
-public class HBaseConfigurationFactory implements FactoryBean {
+public class HBaseConfigurationFactory implements FactoryBean<Configuration> {
 
     private final Configuration hbaseConfiguration;
+
+    @Value("${hbase.zookeeper.quorum}")
+    private String clientAddress;
+    @Value("${hbase.zookeeper.property.clientPort}")
+    private String clientPort;
 
     public HBaseConfigurationFactory(){
         this.hbaseConfiguration = HBaseConfiguration.create();
@@ -20,13 +26,12 @@ public class HBaseConfigurationFactory implements FactoryBean {
 
     public HBaseConfigurationFactory(Map<String, String> propertyMap) {
         this();
-        for (Map.Entry<String, String> entry : propertyMap.entrySet()) {
-            hbaseConfiguration.set(entry.getKey(), entry.getValue());
-        }
+        hbaseConfiguration.set("hbase.zookeeper.quorum", clientAddress);
+        hbaseConfiguration.set("hbase.zookeeper.property.clientPort", clientPort);
     }
 
     @Override
-    public Object getObject() throws Exception {
+    public Configuration getObject() throws Exception {
         return hbaseConfiguration;
     }
 

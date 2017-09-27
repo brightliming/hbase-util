@@ -1,0 +1,4 @@
+com\ehualu\hbase\ResultTransformer$1.class
+com\ehualu\hbase\HBaseUtils.class
+com\ehualu\hbase\FilterBuilder.class
+com\ehualu\hbase\ResultScannerBuilder.class
