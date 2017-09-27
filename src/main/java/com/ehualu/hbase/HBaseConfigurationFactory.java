@@ -1,6 +1,7 @@
 package com.ehualu.hbase;
 
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.springframework.beans.factory.FactoryBean;
@@ -27,7 +28,9 @@ public class HBaseConfigurationFactory implements FactoryBean<Configuration> {
     public HBaseConfigurationFactory(Map<String, String> propertyMap) {
         this();
         hbaseConfiguration.set("hbase.zookeeper.quorum", clientAddress);
-        hbaseConfiguration.set("hbase.zookeeper.property.clientPort", clientPort);
+        if(StringUtils.isNotEmpty(clientPort)){
+            hbaseConfiguration.set("hbase.zookeeper.property.clientPort", clientPort);
+        }
     }
 
     @Override
