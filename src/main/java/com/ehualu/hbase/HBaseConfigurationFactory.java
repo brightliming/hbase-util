@@ -25,16 +25,13 @@ public class HBaseConfigurationFactory implements FactoryBean<Configuration> {
         this.hbaseConfiguration = HBaseConfiguration.create();
     }
 
-    public HBaseConfigurationFactory(Map<String, String> propertyMap) {
-        this();
+
+    @Override
+    public Configuration getObject() throws Exception {
         hbaseConfiguration.set("hbase.zookeeper.quorum", clientAddress);
         if(StringUtils.isNotEmpty(clientPort)){
             hbaseConfiguration.set("hbase.zookeeper.property.clientPort", clientPort);
         }
-    }
-
-    @Override
-    public Configuration getObject() throws Exception {
         return hbaseConfiguration;
     }
 

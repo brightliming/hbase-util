@@ -79,7 +79,7 @@ public class TableBuilder {
             connection = ConnectionFactory.createConnection(configuration);
             Admin admin = connection.getAdmin();
 
-            Preconditions.checkState(!admin.tableExists(TableName.valueOf(tableName)));
+           Preconditions.checkState(!admin.tableExists(TableName.valueOf(tableName)));
 
             HTableDescriptor tableDescriptor = new HTableDescriptor(TableName.valueOf(tableName));
 
